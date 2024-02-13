@@ -34,7 +34,7 @@ app.patch("/users/:id", (req, res) => {
     const { name } = body
     const { id } = req.params;
     
-    let user = users.find((game) => game.id == id)
+    let user = users.find((user) => user.id == id)
     user.name = name
     res.send({message: "se Actualizo el usuario", user})
 });
