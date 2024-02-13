@@ -13,6 +13,16 @@ app.get("/users", (req, res) =>{
     res.send(users)
 });
 
+//getbyID
+app.get("/users/:id", (req, res) => {
+    const userId = parseInt(req.params.id);
+    const user = users.find((user) => user.id === userId);
+    if (!user) {
+        return res.status(404).send("Usuario no encontrado");
+    }
+    res.send(user);
+});
+
 app.post("/users", (req, res) => {
     const { body }  = req
     users.push(body)
@@ -26,7 +36,7 @@ app.patch("/users/:id", (req, res) => {
     
     let user = users.find((game) => game.id == id)
     user.name = name
-    res.send({message: "se elimino el usuario", user})
+    res.send({message: "se Actualizo el usuario", user})
 });
 
 app.delete("/users/:id", (req, res) => {
